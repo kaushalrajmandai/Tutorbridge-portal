@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Session – TutorBridge</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Tutor<span>Bridge</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tutors.html">Tutors</a></li>
+      <li><a href="details.html">Tutor Details</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="booking.html" class="nav-cta">Book Session</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <h1>Book a Session</h1>
+    <p>Select a tutor, pick a date and time, and confirm your booking</p>
+  </div>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="booking-layout">
+
+        <!-- Left: booking form -->
+        <div>
+          <form id="booking-form">
+
+            <div class="booking-card" style="margin-bottom:28px">
+              <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:20px">1. Select Tutor &amp; Subject</h3>
+              <div class="form-group">
+                <label for="tutor-select">Choose Tutor</label>
+                <select id="tutor-select"></select>
+              </div>
+              <div class="form-group">
+                <label for="student-name">Your Name</label>
+                <input type="text" id="student-name" placeholder="Enter your full name" required />
+              </div>
+              <div class="form-group">
+                <label for="student-email">Email Address</label>
+                <input type="email" id="student-email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-group">
+                <label for="session-topic">Session Topic / Notes</label>
+                <textarea id="session-topic" rows="3" placeholder="What would you like to cover in this session?"></textarea>
+              </div>
+            </div>
+
+            <div class="booking-card" style="margin-bottom:28px">
+              <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:6px">2. Select Date</h3>
+              <p style="color:var(--gray);font-size:0.88rem;margin-bottom:10px">Past dates and already-booked slots are unavailable.</p>
+
+              <!-- Month navigation -->
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+                <span id="cal-month" style="font-weight:700;color:var(--navy)"></span>
+              </div>
+
+              <div class="calendar-grid" id="cal-grid"></div>
+            </div>
+
+            <div class="booking-card" style="margin-bottom:28px">
+              <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:6px">3. Select Time Slot</h3>
+              <p style="color:var(--gray);font-size:0.88rem;margin-bottom:14px">Slots marked as "Booked" are already taken.</p>
+              <div class="time-slots" id="time-slots">
+                <p style="color:var(--gray);font-size:0.9rem;grid-column:1/-1">Please select a date first.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;padding:16px;font-size:1rem">Confirm Booking</button>
+          </form>
+
+          <!-- Confirmation message shown after successful booking -->
+          <div id="booking-confirmation">
+            <div style="font-size:3rem;margin-bottom:12px">🎉</div>
+            <h3>Session Booked Successfully!</h3>
+            <p style="color:var(--gray);margin-bottom:16px">A confirmation has been sent to your email.</p>
+            <div style="text-align:left;background:var(--white);border-radius:10px;padding:20px;font-size:0.92rem">
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light)">
+                <span style="color:var(--gray)">Tutor</span>
+                <strong id="conf-tutor"></strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light)">
+                <span style="color:var(--gray)">Subject</span>
+                <strong id="conf-subject"></strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light)">
+                <span style="color:var(--gray)">Date</span>
+                <strong id="conf-date"></strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-light)">
+                <span style="color:var(--gray)">Time</span>
+                <strong id="conf-time"></strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0">
+                <span style="color:var(--gray)">Session Cost</span>
+                <strong style="color:var(--teal)" id="conf-cost"></strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: booking summary sidebar -->
+        <aside>
+          <div class="summary-card">
+            <h3>Booking Summary</h3>
+            <div class="summary-row">
+              <span>Tutor</span>
+              <strong id="sum-tutor">—</strong>
+            </div>
+            <div class="summary-row">
+              <span>Subject</span>
+              <strong id="sum-subject">—</strong>
+            </div>
+            <div class="summary-row">
+              <span>Date</span>
+              <strong id="sum-date">—</strong>
+            </div>
+            <div class="summary-row">
+              <span>Time</span>
+              <strong id="sum-time">—</strong>
+            </div>
+            <div class="summary-row summary-total">
+              <span>Session Cost</span>
+              <strong id="sum-cost">—</strong>
+            </div>
+            <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-top:16px">1-hour session. No hidden charges.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>TutorBridge</h4>
+        <p>India's trusted platform for live one-on-one tutoring sessions with verified subject experts.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="tutors.html">Browse Tutors</a>
+        <a href="booking.html">Book Session</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <h4>Subjects</h4>
+        <a href="tutors.html">Mathematics</a>
+        <a href="tutors.html">Physics</a>
+        <a href="tutors.html">Chemistry</a>
+        <a href="tutors.html">Computer Science</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>support@tutorbridge.in</p>
+        <p>+91 98765 43210</p>
+        <p>Mon–Sat, 9am–8pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TutorBridge. All rights reserved. | B.Tech CSE 2025–29</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
